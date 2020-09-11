@@ -1,16 +1,25 @@
-const express = require('express')
-const httpProxy = require('express-http-proxy')
-const app = express()
+var express = require('express');
+var app = express();
+var router = require('./routes/router')
+var bodyParser = require('body-parser');
 
-const userServiceProxy = httpProxy('https://user-service')
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
-// Authentication
 app.use((req, res, next) => {
-  // TODO: my authentication logic
-  next()
-})
+    //can restrict, making '*' the url of website ex: 'http://heartoftheartisan.com'
+    res.header('Access-Control-Allow-Origin', '*');
+    //could make headers allow : 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    res.header('Access-Control-Allow-Headers', '*')
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
+        return res.status(200).json({});
+    }
+    next();
+});
 
-// Proxy request
-app.get('/users/:userId', (req, res, next) => {
-  userServiceProxy(req, res, next)
-})
+app.use(router);
+
+console.log("Simple API Gateway run on localhost:4000")
+
+app.listen(4000);

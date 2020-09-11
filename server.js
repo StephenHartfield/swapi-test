@@ -1,9 +1,0 @@
-const http = require('http');
-const app = require('./app');
-const path = require('path');
-
-const port = process.env.PORT || 4000;
-
-const server = http.createServer(app);
-
-server.listen(port);

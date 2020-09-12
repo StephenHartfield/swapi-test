@@ -6,7 +6,6 @@ const ContainerStyled = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 500px;
 `;
 
 const Page = styled.div`

@@ -107,27 +107,27 @@ function App() {
               <Row><Cell>Weight</Cell><Cell>{result.weight}</Cell></Row>
               <Row><Cell>Date of Birth</Cell><Cell>{result.dateOfBirth}</Cell></Row>
               <Row>
-                <Cell>{result.films.length === 1 ? "Film" : "Films"}</Cell>
-                <Cell>{result.films.length === 0 ? 
+                <Cell>{result.filmNames.length <= 1 ? "Film" : "Films"}</Cell>
+                <Cell>{result.filmNames.length === 0 ? 
                   "None" :
-                  result.films.map((film, idx) => (
-                  <LineItem key={'film' + idx}>{film.title}</LineItem>))}
+                  result.filmNames.map((film, idx) => (
+                  <LineItem key={'film' + idx}>{film}</LineItem>))}
                 </Cell>
               </Row>
               <Row>
-                <Cell>{result.species.length === 1 ? "Specie" : "Species"}</Cell>
-                <Cell>{result.species.length === 0 ? 
-                  "None" :
-                  result.species.map((specie, idx) => (
-                  <LineItem key={'specie' + idx}>{specie.name}</LineItem>))}
+                <Cell>{result.specieNames.length <= 1 ? "Specie" : "Species"}</Cell>
+                <Cell>{result.specieNames.length === 0 ? 
+                  "Human" :
+                  result.specieNames.map((specie, idx) => (
+                  <LineItem key={'specie' + idx}>{specie}</LineItem>))}
                 </Cell>
               </Row>
               <Row>
-                <Cell>{result.starships.length === 1 ? "Starship" : "Starships"}</Cell>
-                <Cell>{result.starships.length === 0 ? 
+                <Cell>{result.starshipNames.length <= 1 ? "Starship" : "Starships"}</Cell>
+                <Cell>{result.starshipNames.length === 0 ? 
                   "None" : 
-                  result.starships.map((starship, idx) => (
-                    <LineItem key={'starship' + idx}>{starship.name}</LineItem>))}
+                  result.starshipNames.map((starship, idx) => (
+                    <LineItem key={'starship' + idx}>{starship}</LineItem>))}
                 </Cell>
               </Row>
             </Table>

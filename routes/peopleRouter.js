@@ -40,7 +40,11 @@ router.get('/:name', async (req, res) => {
     }
     await lookUp(0, foundPerson.films, films);
     await lookUp(0, foundPerson.species, species);
-    await lookUp(0, foundPerson.starships, starships);
+      await lookUp(0, foundPerson.starships, starships);
+      
+      const filmNames = films.length>0 ? films.map(film => film.title) : films;
+      const specieNames = species.length>0 ? species.map(specie => specie.name) : species;
+      const starshipNames = starships.length>0 ? starships.map(starship => starship.name) : starships;
 
     // My thought here is not to return everything, but only the pertinent information.
     res.status(200).json({
@@ -49,9 +53,9 @@ router.get('/:name', async (req, res) => {
       weight: foundPerson.mass,
       hairColor: foundPerson.hair_color,
       dateOfBirth: foundPerson.birth_year,
-      films,
-      species,
-      starships
+      filmNames,
+      specieNames,
+      starshipNames
     });
   } else {
     res.status(200).json({ msg: 'Not Found' });

@@ -25,7 +25,7 @@ router.get('/:name', async (req, res) => {
     await addPage('https://swapi.dev/api/people/?page=1');
     foundPerson = people.find(person => person.name === name);
   }
-  if (foundPerson.name) {
+  if (foundPerson && foundPerson.name) {
     const films = [];
     const species = [];
     const starships = [];
@@ -40,11 +40,11 @@ router.get('/:name', async (req, res) => {
     }
     await lookUp(0, foundPerson.films, films);
     await lookUp(0, foundPerson.species, species);
-      await lookUp(0, foundPerson.starships, starships);
+    await lookUp(0, foundPerson.starships, starships);
       
-      const filmNames = films.length>0 ? films.map(film => film.title) : films;
-      const specieNames = species.length>0 ? species.map(specie => specie.name) : species;
-      const starshipNames = starships.length>0 ? starships.map(starship => starship.name) : starships;
+    const filmNames = films.length>0 ? films.map(film => film.title) : films;
+    const specieNames = species.length>0 ? species.map(specie => specie.name) : species;
+    const starshipNames = starships.length>0 ? starships.map(starship => starship.name) : starships;
 
     // My thought here is not to return everything, but only the pertinent information.
     res.status(200).json({
